@@ -3,7 +3,6 @@ package com.flink.adapter;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
@@ -18,7 +17,7 @@ public class StreamJob {
         );
 
         // Step 3: Transform the data
-        SingleOutputStreamOperator<Tuple2<String, Integer>> wordCounts = text
+        DataStream<Tuple2<String, Integer>> wordCounts = text
                 .flatMap(new Tokenizer()) // Split sentences into words
                 .keyBy(value -> value.f0) // Group by word
                 .sum(1); // Sum the counts
