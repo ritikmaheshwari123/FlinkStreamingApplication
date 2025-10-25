@@ -1,5 +1,6 @@
-package com.flink.adapter.source;
+package com.flink.analytics.dataGenerator;
 
+import com.flink.analytics.model.UserSession;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.util.Random;
