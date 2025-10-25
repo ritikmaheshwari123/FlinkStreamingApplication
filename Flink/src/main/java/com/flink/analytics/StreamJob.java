@@ -5,7 +5,10 @@ import com.flink.analytics.model.EnrichedSession;
 import com.flink.analytics.operator.*;
 import com.flink.analytics.model.UserSession;
 import com.flink.analytics.dataGenerator.UserSessionSource;
+import com.flink.analytics.sink.GrpcAnomalySink;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
+import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
@@ -65,6 +68,9 @@ public class StreamJob {
 
 
         anomalies.print("User Insights:::");
+        // ✅ 6. gRPC Sink
+//        anomalies.addSink(new GrpcAnomalySink("localhost", 50051))
+//                .name("GrpcAnomalySink");
 
         // ✅ 6. Kafka Sink
 //        KafkaSink<String> kafkaSink = KafkaSink.<String>builder()

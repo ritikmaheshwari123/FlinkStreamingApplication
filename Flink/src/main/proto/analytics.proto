@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "analytics";
+
+message AnomalyRequest {
+    string department = 1;
+    string message = 2;
+}
+
+message AnomalyResponse {
+    bool success = 1;
+}
+
+service AnalyticsService {
+    rpc SendAnomaly(AnomalyRequest) returns (AnomalyResponse);
+}
